@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_23_043950) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_23_052617) do
   create_table "customers", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -32,6 +32,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_043950) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "order_details", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "quantity"
+    t.string "created_us"
+    t.string "updated_us"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["product_id"], name: "index_order_details_on_product_id"
   end
 
   create_table "orders", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
@@ -63,6 +76,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_043950) do
     t.index ["maker_id"], name: "index_products_on_maker_id"
   end
 
+  create_table "users", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "first_name_kana"
+    t.string "last_name_kana"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "products"
   add_foreign_key "orders", "customers"
   add_foreign_key "products", "makers"
 end
