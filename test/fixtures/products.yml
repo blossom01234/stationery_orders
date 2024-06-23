@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  maker: one
+  name: MyString
+  jancode: 1
+  product_code: MyString
+  price: 9.99
+  unit: 1
+  note: MyString
+
+two:
+  maker: two
+  name: MyString
+  jancode: 1
+  product_code: MyString
+  price: 9.99
+  unit: 1
+  note: MyString

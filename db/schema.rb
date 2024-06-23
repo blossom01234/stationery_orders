@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_23_025047) do
-  create_table "makers", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_06_23_040046) do
+  create_table "makers", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "products", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+    t.bigint "maker_id", null: false
+    t.string "name"
+    t.integer "jancode"
+    t.string "product_code"
+    t.decimal "price", precision: 10
+    t.integer "unit"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_products_on_maker_id"
+  end
+
+  add_foreign_key "products", "makers"
 end
