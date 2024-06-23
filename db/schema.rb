@@ -10,11 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_23_040046) do
-  create_table "makers", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
-    t.string "name"
+ActiveRecord::Schema[7.1].define(version: 2024_06_23_043950) do
+  create_table "customers", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "first_name_kana"
+    t.string "last_name_kana"
+    t.string "organization"
+    t.string "email"
+    t.string "created_us"
+    t.string "updated_us"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "makers", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "created_us"
+    t.string "updated_us"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.datetime "order_date"
+    t.integer "status"
+    t.decimal "total_price", precision: 10
+    t.string "created_us"
+    t.string "updated_us"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "products", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
@@ -25,10 +55,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_040046) do
     t.decimal "price", precision: 10
     t.integer "unit"
     t.string "note"
+    t.string "created_us"
+    t.string "updated_us"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["maker_id"], name: "index_products_on_maker_id"
   end
 
+  add_foreign_key "orders", "customers"
   add_foreign_key "products", "makers"
 end

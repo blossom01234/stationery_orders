@@ -8,6 +8,9 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.decimal :price
       t.integer :unit
       t.string :note
+      t.string :created_us
+      t.string :updated_us
+      t.datetime :deleted_at
 
       t.timestamps
     end

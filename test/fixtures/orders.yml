@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  order_date: 2024-06-23 13:39:50
+  status: 1
+  total_price: 9.99
+  created_us: MyString
+  updated_us: MyString
+  deleted_at: 2024-06-23 13:39:50
+
+two:
+  customer: two
+  order_date: 2024-06-23 13:39:50
+  status: 1
+  total_price: 9.99
+  created_us: MyString
+  updated_us: MyString
+  deleted_at: 2024-06-23 13:39:50

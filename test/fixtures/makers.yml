@@ -2,6 +2,12 @@
 
 one:
   name: MyString
+  created_us: MyString
+  updated_us: MyString
+  deleted_at: 2024-06-23 13:39:33
 
 two:
   name: MyString
+  created_us: MyString
+  updated_us: MyString
+  deleted_at: 2024-06-23 13:39:33
