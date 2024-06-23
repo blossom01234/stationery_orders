@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_06_23_052617) do
-  create_table "customers", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+  create_table "customers", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "first_name_kana"
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_052617) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "makers", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+  create_table "makers", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.string "created_us"
     t.string "updated_us"
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_052617) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "order_details", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+  create_table "order_details", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "order_id", null: false
     t.integer "quantity"
@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_052617) do
     t.index ["product_id"], name: "index_order_details_on_product_id"
   end
 
-  create_table "orders", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+  create_table "orders", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.datetime "order_date"
     t.integer "status"
@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_052617) do
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
-  create_table "products", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+  create_table "products", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.bigint "maker_id", null: false
     t.string "name"
     t.integer "jancode"
@@ -76,7 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_052617) do
     t.index ["maker_id"], name: "index_products_on_maker_id"
   end
 
-  create_table "users", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
+  create_table "users", charset: "utf8", collation: "utf8_unicode_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "first_name_kana"

@@ -1,0 +1,23 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+    <%= link_to "Stationary Orders", root_path, id: "logo" %>
+    <nav>
+        <div class="navbar-header">
+            <button id="hamburger" type="button" class="navbar-toggle collapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <ul id="navbar-menu" 
+            class="nav navbar-nav navbar-right collapse navbar-collapse">
+            <li><%= link_to "管理者", "#" %></li>
+            <li><%= link_to "会員", "#" %></li>
+            <li><%= link_to "商品",  "#" %></li>
+            <li><%= link_to "受注一覧",  "#" %></li>
+            <li><%= link_to "ログアウト",  "#" %></li>
+        </ul>
+    </nav>
+    </div>
+</header>
