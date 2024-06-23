@@ -16,7 +16,7 @@
             <li><%= link_to "会員", "#" %></li>
             <li><%= link_to "商品",  "#" %></li>
             <li><%= link_to "受注一覧",  "#" %></li>
-            <li><%= link_to "ログアウト",  "#" %></li>
+            <li><%= link_to "Sign out", users_logout_path, data: { turbo_method: :delete } %></li>
         </ul>
     </nav>
     </div>
