@@ -4,14 +4,8 @@ one:
   product: one
   order: one
   quantity: 1
-  created_us: MyString
-  updated_us: MyString
-  deleted_at: 2024-06-23 13:53:57
 
 two:
   product: two
-  order: two
-  quantity: 1
-  created_us: MyString
-  updated_us: MyString
-  deleted_at: 2024-06-23 13:53:57
+  order: one
+  quantity: 2

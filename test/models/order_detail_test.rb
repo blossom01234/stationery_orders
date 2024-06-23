@@ -1,7 +1,13 @@
 require "test_helper"
 
 class OrderDetailTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @order_detail = order_details(:one)
+  end
+
+  test "order_detail_associtation" do
+    assert_not @order_detail.nil?
+    assert_not @order_detail.order.nil?
+    assert_not @order_detail.product.nil?
+  end
 end

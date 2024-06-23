@@ -1,25 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  maker: one
-  name: MyString
+  maker: kokuyo
+  name: "ペンA"
   jancode: 1
-  product_code: MyString
-  price: 9.99
+  product_code: "code1"
+  price: 100
   unit: 1
-  note: MyString
-  created_us: MyString
-  updated_us: MyString
-  deleted_at: 2024-06-23 13:39:39
+  note: "備考1"
 
 two:
-  maker: two
-  name: MyString
-  jancode: 1
-  product_code: MyString
-  price: 9.99
-  unit: 1
-  note: MyString
-  created_us: MyString
-  updated_us: MyString
-  deleted_at: 2024-06-23 13:39:39
+  maker: kokuyo
+  name: "ノートB"
+  jancode: 2
+  product_code: "code2"
+  price: 200
+  unit: 2
+  note: "備考2"

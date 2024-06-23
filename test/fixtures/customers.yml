@@ -1,23 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  first_name_kana: MyString
-  last_name_kana: MyString
-  organization: MyString
-  email: MyString
-  created_us: MyString
-  updated_us: MyString
-  deleted_at: 2024-06-23 13:39:43
-
-two:
-  first_name: MyString
-  last_name: MyString
-  first_name_kana: MyString
-  last_name_kana: MyString
-  organization: MyString
-  email: MyString
-  created_us: MyString
-  updated_us: MyString
-  deleted_at: 2024-06-23 13:39:43
+tanaka:
+  first_name: "田中"
+  last_name: "太郎"
+  last_name_kana: "タナカ"
+  organization: "タロウ"
+  email: "customer@example.com"
