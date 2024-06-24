@@ -18,9 +18,6 @@ Rails.application.routes.draw do
   devise_for :customers, path: 'customers', controllers: {
     sessions: 'customers/sessions'
   }
-  devise_scope :user do
-    delete 'users_logout', to: 'users/sessions#logout'
-  end
   root "customer_product_list#index"
   # root "customer_product_list#index"
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Users::SessionsController < Devise::SessionsController
+class Customers::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -16,17 +16,17 @@ class Users::SessionsController < Devise::SessionsController
     respond_with resource, location: root_path
   rescue
     set_flash_message!(:alert, :invalid)
-    redirect_to new_user_session_path
+    redirect_to new_customer_session_path
   end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+  end
 
   private
     def after_sign_out_path_for(resource_or_scope)
-      new_user_session_path
+      debugger
+      new_customer_session_path
     end
 
   # If you have extra params to permit, append them to the sanitizer.
