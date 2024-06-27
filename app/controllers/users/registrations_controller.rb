@@ -8,13 +8,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # ユーザーの登録はできないようにする
   # GET /resource/sign_up
   def new
+    super
     redirect_to root_path
   end
 
   # POST /resource
-  def create
-    redirect_to root_path
-  end
+  # def create
+  #   super
+  #   debugger
+  #   redirect_to root_path
+  # end
 
   # GET /resource/edit
   # def edit

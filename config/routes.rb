@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   # users/confirmation/new → devise/confirmations#new (アカウント確認)
   # users/sign_up → devise/registrations#new (新規登録)
   devise_for :users, path: 'users', controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
   }
   devise_for :customers, path: 'customers', controllers: {
     sessions: 'customers/sessions'
