@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+  get 'orders/show'
+  get 'orders/update'
+  get 'orders/destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -20,6 +24,7 @@ Rails.application.routes.draw do
   devise_for :customers, path: 'customers', controllers: {
     sessions: 'customers/sessions'
   }
+  resources :orders
   root "customer_product_list#index"
   # root "customer_product_list#index"
 end

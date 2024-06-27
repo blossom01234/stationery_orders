@@ -1,28 +1,23 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-    <%= link_to "Stationary Orders", root_path, id: "logo" %>
-    <nav>
-        <div class="navbar-header">
-            <button id="hamburger" type="button" class="navbar-toggle collapsed">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+<header>
+    <div class="container-fluid">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-4">
+                <%= link_to "Stationary Orders", root_path, id: "logo" %>
+            </div>
+            <div class="col-8 text-end">
+                <ul class="nav nav-pills justify-content-end ">
+                    <li class="nav-item"><%= link_to "管理者", "#", class:'nav-link active' %></li>
+                    <li class="nav-item"><%= link_to "会員", "#", class:'nav-link' %></li>
+                    <li class="nav-item"><%= link_to "商品",  "#", class:'nav-link' %></li>
+                    <li class="nav-item"><%= link_to "受注一覧",  "#", class:'nav-link' %></li>
+                    <% if user_signed_in? %>
+                        <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class:'nav-link' %></li>
+                    <% elsif customer_signed_in? %>
+                        <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, data: { turbo_method: :delete }, class:'nav-link' %></li>
+                    <% else %>
+                    <% end %>
+                </ul>
+            </div>
         </div>
-        <ul id="navbar-menu" 
-            class="nav navbar-nav navbar-right collapse navbar-collapse">
-            <li><%= link_to "管理者", "#" %></li>
-            <li><%= link_to "会員", "#" %></li>
-            <li><%= link_to "商品",  "#" %></li>
-            <li><%= link_to "受注一覧",  "#" %></li>
-            <% if user_signed_in? %>
-                <li><%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %></li>
-            <% elsif user_signed_in? %>
-                <li><%= link_to "Sign out", destroy_customer_session_path, data: { turbo_method: :delete } %></li>
-            <% else %>
-            <% end %>
-        </ul>
-    </nav>
     </div>
 </header>

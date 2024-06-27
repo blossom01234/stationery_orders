@@ -2,11 +2,15 @@ source "https://rubygems.org"
 
 ruby "3.3.3"
 
+gem "will_paginate", "3.3.1"
+# gem "bootstrap-will_paginate", "1.0.0"
+
 gem 'mysql2'
 
 gem 'devise'
 
-gem "bootstrap-sass",  "3.4.1"
+gem "bootstrap", "~> 5.1.3"
+# gem "bootstrap-sass",  "3.4.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"

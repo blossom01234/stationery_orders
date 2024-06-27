@@ -1,0 +1,30 @@
+<div class="container">
+    <h1>Orders#index</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr class="">
+                    <th>注文ID</th>
+                    <th>ステータス</th>
+                    <th>合計金額</th>
+                    <th>更新日</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @orders.each do |order| %>
+                <tr class="table-hover">
+                    <td><%= order.id %></td>
+                    <td>data2</td>
+                    <td>data3</td>
+                    <td>data4</td>
+                    <td>data1</td>
+                    <td>data1</td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <%= will_paginate @orders %>
+</div>
