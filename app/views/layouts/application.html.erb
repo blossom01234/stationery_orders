@@ -11,8 +11,16 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <p><%= notice %></p>
-    <p><%= alert %></p>
+    <% if alert %>
+      <div class="alert alert-danger">
+        <p><%= alert %></p>
+      </div>
+    <% end %>
+    <% if notice %>
+      <div class="alert alert-primary">
+        <p><%= notice %></p>
+      </div>
+    <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
     <%= debug(params) if Rails.env.development? %>
