@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     sessions: 'customers/sessions'
   }
   resources :orders
+  resources :products
   root "customer_product_list#index"
   # root "customer_product_list#index"
 end
