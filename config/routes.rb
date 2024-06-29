@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   }
   resources :orders
   resources :products
-  root "customer_product_list#index"
+  root "customer_product_lists#index"
   # root "customer_product_list#index"
 end

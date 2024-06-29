@@ -1,0 +1,2 @@
+module CustomerProductListsHelper
+end

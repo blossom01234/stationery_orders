@@ -12,6 +12,8 @@ gem 'devise'
 gem "bootstrap", "~> 5.1.3"
 # gem "bootstrap-sass",  "3.4.1"
 
+gem "rails-controller-testing"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 
