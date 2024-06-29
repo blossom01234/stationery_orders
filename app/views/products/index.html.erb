@@ -1,5 +1,39 @@
 <div class="container">
     <h1>Products</h1>
+    <%= form_with(url: products_path, method: "get", local: true) do |f| %>
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-1">
+                    <%= f.label :name, "商品名", class: "min-w-2" %>
+                </div>
+                <div class="col-4">
+                    <%= f.text_field :name, class: "form-control", value: params[:name] %>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-1">
+                    <%= f.label :maker_id, "メーカー", class:"form-label" %>
+                </div>
+                <div class="col-4">
+                    <%= f.select :maker_id, options_for_select(@makers), 
+                        { prompt: '選択してください' }, class: "form-control", selected: params[:maker_id] %>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-1">
+                    <%= f.label :product_code, "商品コード", class:"form-label" %>
+                </div>
+                <div class="col-4">
+                    <%= f.text_field :product_code, class: "form-control", value: params[:product_code] %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 d-flex justify-content-end">
+                    <%= f.submit "検索", class: "btn btn-success mb-3" %>
+                </div>
+            </div>
+        </div>
+    <% end %>
     <%= will_paginate @products %>
     <div class="table-responsive">
         <table class="table table-hover">

@@ -2,7 +2,37 @@ class ProductsController < ApplicationController
     before_action :set_product, only: [:edit, :update, :destroy]
     
     def index
-        @products = Product.includes(:maker).references(:makers).paginate(page: params[:page], per_page: 15)
+        @makers = Maker.all.map { |maker| [maker.name, maker.id] }
+        filters = []
+        values = []
+
+        # 以下のようなwhereの指定になる
+        # ["products.name LIKE ?", "%test%"]
+        if params[:name].present?
+            filters << 'products.name LIKE ?'
+            values << "%#{params[:name]}%"
+        end
+
+        if params[:maker_id].present?
+            filters << 'products.maker_id = ?'
+            values << params[:maker_id]
+        end
+
+        if params[:product_code].present?
+            filters << 'products.product_code = ?'
+            values << params[:product_code]
+        end
+
+        if filters.present?
+            @products = Product.includes(:maker)
+            .references(:makers)
+            .where(filters.join(' AND '), *values)
+            .paginate(page: params[:page], per_page: 15)
+        else
+            @products = Product.includes(:maker)
+            .references(:makers)
+            .paginate(page: params[:page], per_page: 15)
+        end
     end
 
     def new
