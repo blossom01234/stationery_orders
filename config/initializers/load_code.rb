@@ -1,0 +1,1 @@
+CODE = YAML.load_file("#{Rails.root.to_s}/config/code.yml").deep_symbolize_keys

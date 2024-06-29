@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
     before_action :set_product, only: [:edit, :update, :destroy]
-    before_action :set_makers, only: [:index, :edit]
+    before_action :set_makers, only: [:index, :edit, :new]
     
     def index
         filters = []
@@ -47,7 +47,8 @@ class ProductsController < ApplicationController
         if @product.save
             redirect_to :products, notice: 'Product was successfully created.'
         else
-            render :new
+            set_makers
+            render :new, status: :unprocessable_entity
         end
     end
 

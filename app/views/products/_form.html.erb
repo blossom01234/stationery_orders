@@ -1,0 +1,31 @@
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="text-center mb-3">
+                <h2><%= title %></h2>
+            </div>
+            <%= form_with(model: @product, id:'product_update_form') do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <%= f.label :name, '商品名', class: 'form-label' %>
+                <%= f.text_field :name, class: 'form-control' %>
+                <%= f.label :maker_id, "メーカー", class:'form-label' %>
+                <%= f.select :maker_id, options_for_select(@makers, selected: @product.maker_id), 
+                    {}, class: 'form-control' %>
+                <%= f.label :product_code, '商品コード', class: 'form-label' %>
+                <%= f.text_field :product_code, class: 'form-control' %>
+                <%= f.label :jancode, 'JANコード', class: 'form-label' %>
+                <%= f.number_field :jancode, class: 'form-control' %>
+                <%= f.label :price, '単価', class: 'form-label' %>
+                <%= f.number_field :price, class: 'form-control' %>
+                <%= f.label :unit, "単位", class:'form-label' %>
+                <%= f.select :unit, options_for_select(code_select_options(:unit), selected: @product.unit), 
+                    {}, class: 'form-control' %>
+                <%= f.label :note, '備考', class: 'form-label' %>
+                <%= f.text_area :note, class: 'form-control' %>
+                <div class="text-center mb-3">
+                    <%= f.submit button, class: "btn btn-primary mt-3 w-10", data: { turbo_confirm: "データを#{button}しますか？" }, style:"width: 150px;" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

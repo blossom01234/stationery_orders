@@ -65,7 +65,7 @@
                         <td class="d-none d-md-table-cell"><%= product.jancode %></td>
                         <td><%= product.product_code %></td>
                         <td><%= product.price %></td>
-                        <td><%= unit_ctov(product.unit) %></td>
+                        <td><%= CODE[:unit][(product.unit)] %></td>
                         <td><%= product.note %></td>
                         <td class="d-none d-md-table-cell"><%= product.created_at %></td>
                         <td class="d-none d-md-table-cell"><%= product.updated_at %></td>
