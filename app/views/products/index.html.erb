@@ -1,35 +1,39 @@
-<div class="container">
-    <h1>Products</h1>
+<div class="container product_index mt-3">
+    <h1>商品一覧</h1>
     <%= form_with(url: products_path, method: "get", local: true) do |f| %>
         <div class="container">
             <div class="row mb-3">
-                <div class="col-1">
-                    <%= f.label :name, "商品名", class: "min-w-2" %>
+                <div class="col-md-1">
+                    <%= f.label :name, "商品名" %>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <%= f.text_field :name, class: "form-control", value: params[:name] %>
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-1">
+                <div class="col-md-1">
                     <%= f.label :maker_id, "メーカー", class:"form-label" %>
                 </div>
-                <div class="col-4">
-                    <%= f.select :maker_id, options_for_select(@makers), 
-                        { prompt: '選択してください' }, class: "form-control", selected: params[:maker_id] %>
+                <div class="col-md-4">
+                    <%= f.select :maker_id, 
+                        options_for_select(@makers, selected: params[:maker_id]), 
+                        {}, class: "form-control" %>
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-1">
+                <div class="col-md-1">
                     <%= f.label :product_code, "商品コード", class:"form-label" %>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <%= f.text_field :product_code, class: "form-control", value: params[:product_code] %>
                 </div>
             </div>
             <div class="row">
                 <div class="col-5 d-flex justify-content-end">
-                    <%= f.submit "検索", class: "btn btn-success mb-3" %>
+                    <%= f.submit "検索", class: "btn btn-primary mb-3" %>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <%= link_to '新規作成', new_product_path, class: 'btn btn-success' %>
                 </div>
             </div>
         </div>
@@ -42,14 +46,13 @@
                     <th>ID</th>
                     <th>メーカー</th>
                     <th>名前</th>
-                    <th>JANコード</th>
+                    <th class="d-none d-md-table-cell">JANコード</th>
                     <th>商品コード</th>
                     <th>単価</th>
                     <th>単位</th>
                     <th>備考</th>
-                    <th>作成日</th>
-                    <th>更新日</th>
-                    <th></th>
+                    <th class="d-none d-md-table-cell">作成日</th>
+                    <th class="d-none d-md-table-cell">更新日</th>
                     <th></th>
                 </tr>
             </thead>
@@ -57,19 +60,17 @@
                 <% @products.each do |product| %>
                     <tr ondblclick="editProdcuct(<%= product.id %>)">
                         <td><%= product.id %></td>
-                        <td><%= product.maker.name %></td>
+                        <td><%= product.maker ? product.maker.name : '' %></td>
                         <td><%= product.name %></td>
-                        <td><%= product.jancode %></td>
+                        <td class="d-none d-md-table-cell"><%= product.jancode %></td>
                         <td><%= product.product_code %></td>
                         <td><%= product.price %></td>
                         <td><%= unit_ctov(product.unit) %></td>
                         <td><%= product.note %></td>
-                        <td><%= product.created_at %></td>
-                        <td><%= product.updated_at %></td>
-                        <td>
-                            <%= button_to '編集', edit_product_path(product), method: :get, class: 'btn btn-primary' %>
-                        </td>
-                        <td>
+                        <td class="d-none d-md-table-cell"><%= product.created_at %></td>
+                        <td class="d-none d-md-table-cell"><%= product.updated_at %></td>
+                        <td class="d-flex">
+                            <%= button_to '編集', edit_product_path(product), method: :get, class: 'btn btn-success me-2' %>
                             <%= button_to '削除', product, method: :delete, data:{ "turbo-method": :delete, turbo_confirm: '削除しますか？' }, class: 'btn btn-danger' %>
                         </td>
                     </tr>

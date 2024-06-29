@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_23_103925) do
   end
 
   create_table "products", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
-    t.bigint "maker_id", null: false
+    t.bigint "maker_id"
     t.string "name"
     t.bigint "jancode"
     t.string "product_code"

@@ -4,3 +4,12 @@
 header {
   background-color: lightskyblue;
 }
+
+.product_index {
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75%; /* 必要に応じて調整 */
+  }
+}

@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
     before_action :set_product, only: [:edit, :update, :destroy]
+    before_action :set_makers, only: [:index, :edit]
     
     def index
-        @makers = Maker.all.map { |maker| [maker.name, maker.id] }
         filters = []
         values = []
 
@@ -55,6 +55,7 @@ class ProductsController < ApplicationController
         if @product.update(product_params)
             redirect_to :products, notice: 'Product was successfully updated.'
         else
+            set_makers
             render :edit, status: :unprocessable_entity
         end
     end
@@ -65,6 +66,11 @@ class ProductsController < ApplicationController
     end
 
     private
+        def set_makers
+            @makers = Maker.all.map { |maker| [maker.name, maker.id] }
+            @makers.unshift(['選択してください', nil]) if @makers.any?
+        end
+
         def set_product
             @product = Product.find(params[:id])
         end
