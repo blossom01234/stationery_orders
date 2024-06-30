@@ -16,8 +16,14 @@ header {
 
 .product-form {
   img {
-    max-width: 800px; /* 画像の最大幅 */
-    width: auto; /* 画像の幅を自動調整 */
-    height: auto; /* 画像の高さを自動調整 */
+    max-width: 800px;
+    width: auto;
+    height: auto;
+  }
+  .image-preview-target {
+    max-width: 800px;
+    width: auto;
+    height: auto;
+    display: none;
   }
 }

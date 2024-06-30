@@ -8,13 +8,15 @@
                 <%= render 'shared/error_messages', object: f.object %>
                 <%= f.label :name, '商品名', class: 'form-label' %>
                 <%= f.text_field :name, class: 'form-control' %>
-                <%= f.label :image, '画像', class: 'form-label' %>
-                <%= f.file_field :image, class: 'form-control' %>
-                <% if @product.image.attached? %>
-                    <%= image_tag @product.image, class: "my-3 form-control" %>
-                <% else %>
-                    <%=  %>
-                <% end %>
+                <div data-controller="image-preview">
+                    <%= f.label :image, '画像', class: 'form-label' %>
+                    <%= f.file_field :image, class: 'form-control mb-2', data: { image_preview_target: 'input' } %>
+                    <button type="button" data-action="image-preview#clearPreview" class="btn btn-secondary mb-2">画像選択クリア</button>
+                    <img data-image-preview-target="preview" src="#" alt="Image preview" class="image-preview-target mb-2">
+                    <% if @product.image.attached? %>
+                        <%= image_tag @product.image, class: "mb-3 form-control", data: { image_preview_target: 'registeredImage' } %>
+                    <% end %>
+                </div>
                 <%= f.label :maker_id, 'メーカー', class:'form-label' %>
                 <%= f.select :maker_id, options_for_select(@makers, selected: @product.maker_id), 
                     {}, class: 'form-control' %>
