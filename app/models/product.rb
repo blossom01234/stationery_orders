@@ -5,5 +5,7 @@ class Product < ApplicationRecord
   validates :jancode, presence:true
   validates :product_code, presence:true
   validates :price, presence:true
-  has_one_attached :image
+  has_one_attached :image do |attachable|
+    attachable.variant :display, resize_to_limit: [2000, 2000]
+  end
 end
