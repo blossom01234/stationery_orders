@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container mt-3 product-form">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="text-center mb-3">
@@ -8,7 +8,14 @@
                 <%= render 'shared/error_messages', object: f.object %>
                 <%= f.label :name, '商品名', class: 'form-label' %>
                 <%= f.text_field :name, class: 'form-control' %>
-                <%= f.label :maker_id, "メーカー", class:'form-label' %>
+                <%= f.label :image, '画像', class: 'form-label' %>
+                <%= f.file_field :image, class: 'form-control' %>
+                <% if @product.image.attached? %>
+                    <%= image_tag @product.image, class: "my-3 form-control" %>
+                <% else %>
+                    <%=  %>
+                <% end %>
+                <%= f.label :maker_id, 'メーカー', class:'form-label' %>
                 <%= f.select :maker_id, options_for_select(@makers, selected: @product.maker_id), 
                     {}, class: 'form-control' %>
                 <%= f.label :product_code, '商品コード', class: 'form-label' %>

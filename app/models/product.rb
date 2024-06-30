@@ -5,4 +5,5 @@ class Product < ApplicationRecord
   validates :jancode, presence:true
   validates :product_code, presence:true
   validates :price, presence:true
+  has_one_attached :image
 end

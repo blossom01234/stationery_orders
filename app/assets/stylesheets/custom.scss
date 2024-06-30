@@ -13,3 +13,11 @@ header {
     height: 75%; /* 必要に応じて調整 */
   }
 }
+
+.product-form {
+  img {
+    max-width: 800px; /* 画像の最大幅 */
+    width: auto; /* 画像の幅を自動調整 */
+    height: auto; /* 画像の高さを自動調整 */
+  }
+}
