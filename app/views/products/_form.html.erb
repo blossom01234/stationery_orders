@@ -13,7 +13,7 @@
                     <%= f.file_field :image, class: 'form-control mb-2', data: { image_preview_target: 'input' } %>
                     <button type="button" data-action="image-preview#clearPreview" class="btn btn-secondary mb-2">画像選択クリア</button>
                     <img data-image-preview-target="preview" src="#" alt="Image preview" class="image-preview-target mb-2">
-                    <% if @product.image.attached? %>
+                    <% if @product.image.attached? && @product.image.content_type.in?(%w(image/png image/jpg image/jpeg)) %>
                         <%= image_tag @product.image.variant(:display), class: "mb-3 form-control", data: { image_preview_target: 'registeredImage' } %>
                     <% end %>
                 </div>

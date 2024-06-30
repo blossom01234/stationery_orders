@@ -29,6 +29,7 @@ gem 'image_processing', '~> 1.2'
 gem 'mini_magick', '~> 4.9'
 gem 'activestorage', '~> 7.1'
 gem 'dotenv-rails'
+gem "active_storage_validations", "0.9.8"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
