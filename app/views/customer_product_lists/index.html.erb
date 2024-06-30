@@ -1,75 +1,29 @@
 <div class="container mt-3 mb-3">
-    <div class="row">
-        <div class="d-flex justify-content-center">
+    <div class="row g-4">
+        <div class="d-flex justify-content-center mb-3">
             <h1>商品一覧</h1>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
+        <% @products.each do |product| %>
+            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
             <div class="card">
-                <img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div>
-                            <h4 class="card-title">シャープペンシル</h4>
-                            <h6 class="card-subtitle">メーカー:コクヨ</h6>
-                            <p class="card-text">品番:AZ-10000</p>
-                        </div>
-                        <div class="ms-2 align-self-end">
-                            <button class="btn btn-primary">カートに入れる</button>
+                    <img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="card-title"><%= product.name %></h4>
+                                <h6 class="card-subtitle">メーカー：<%= product.maker.name %></h6>
+                                <p class="card-text">品番：<%= product.product_code %></p>
+                            </div>
+                            <div class="ms-2 align-self-end">
+                                <%= form_with url: carts_path, method: :post do |form|  %>
+                                    <%= form.hidden_field :product_id, value: product.id %>
+                                    <%= form.submit 'カートに入れる', class: 'btn btn-primary' %>
+                                <% end %>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
-            <div class="card">
-                <img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div>
-                            <h4 class="card-title">シャープペンシル</h4>
-                            <h6 class="card-subtitle">メーカー:コクヨ</h6>
-                            <p class="card-text">品番:AZ-10000</p>
-                        </div>
-                        <div class="ms-2 align-self-end">
-                            <button class="btn btn-primary">カートに入れる</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
-            <div class="card">
-                <img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div>
-                            <h4 class="card-title">シャープペンシル</h4>
-                            <h6 class="card-subtitle">メーカー:コクヨ</h6>
-                            <p class="card-text">品番:AZ-10000</p>
-                        </div>
-                        <div class="ms-2 align-self-end">
-                            <button class="btn btn-primary">カートに入れる</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
-            <div class="card">
-                <img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div>
-                            <h4 class="card-title">シャープペンシル</h4>
-                            <h6 class="card-subtitle">メーカー:コクヨ</h6>
-                            <p class="card-text">品番:AZ-10000</p>
-                        </div>
-                        <div class="ms-2 align-self-end">
-                            <button class="btn btn-primary">カートに入れる</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <% end %>
     </div>
 </div>

@@ -1,5 +1,7 @@
 <div class="container product_index mt-3">
-    <h1>商品一覧</h1>
+    <div class="d-flex justify-content-center mb-3">
+        <h1>商品マスタ一覧</h1>
+    </div>
     <%= form_with(url: products_path, method: "get", local: true) do |f| %>
         <div class="container">
             <div class="row mb-3">
