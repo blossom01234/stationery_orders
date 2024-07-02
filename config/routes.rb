@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :carts
   resources :orders
   resources :products
+  resources :makers
   root "customer_product_lists#index"
   # root "customer_product_list#index"
 end
