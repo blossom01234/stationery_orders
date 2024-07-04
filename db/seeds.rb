@@ -6,7 +6,12 @@ customer1 = Customer.create(first_name:"田中", last_name:"太郎", first_name_
 
 99.times do |n|
     product1 = Product.create(maker:maker1, name:"せいひん1", jancode:1000000000001, product_code:"b", price:3, unit:"個", note:"bbb")
-    product1.image.attach(io: File.open(Rails.root.join('db/seeds/example.jpg')), filename: 'example.jpg')
+    image_path = Rails.root.join('db/seeds/example.jpg')
+    if File.exist?(image_path)
+        product1.image.attach(io: File.open(image_path), filename: 'example.jpg')
+    else
+        puts "File not found: #{image_path}"
+    end
     order1 = Order.create(customer:customer1, order_date: Time.zone.now, status:1, total_price: 1000)
     OrderDetail.create(order: order1, product: product1, quantity: 2)
 end
