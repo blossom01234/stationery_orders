@@ -3,33 +3,43 @@
         <h1>カート</h1>
     </div>
     <% if @carts.any? %>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>画像</th>
-                        <th>商品名</th>
-                        <th>商品コード</th>
-                        <th>単価</th>
-                        <th>数量</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @carts.each do |cart| %>
+        <%= form_with url: cart_path(@carts), method: :patch, local: true do |f| %>
+            <%= f.submit 'カート更新', class: 'btn btn-success ms-3', data: { turbo_confirm: "更新しますか？" } %>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td class="w-25"><img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg"></td>
-                            <td><%= cart.product.name %></td>
-                            <td><%= cart.product.product_code %></td>
-                            <td><%= cart.product.price %></td>
-                            <td><%= cart.quantity %></td>
+                            <th>画像</th>
+                            <th>商品名</th>
+                            <th>商品コード</th>
+                            <th>単価</th>
+                            <th>数量</th>
                         </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        
+                            <% @carts.each do |cart| %>
+                                <tr>
+                                    <td class="w-25"><img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg"></td>
+                                    <td class="w-25"><%= cart.product.name %></td>
+                                    <td><%= cart.product.product_code %></td>
+                                    <td><%= cart.product.price %>円</td>
+                                    <td><%= f.number_field "items[#{cart.id}][quantity]", value: cart.quantity %></td>
+                                    <td>
+                                        <%= link_to '削除', cart, method: :delete,
+                                        data: { "turbo-method": :delete, turbo_confirm: "削除しますか？" },
+                                        class: 'btn btn-danger mx-3' %>
+                                    </td>
+                                </tr>
+                            <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
     <% else %>
-        <p>Your cart is empty.</p>
+        <div class="mt-5 text-center">
+            <p class="text-danger">カートは空です</p>
+        </div>
     <% end %>
 </div>
 

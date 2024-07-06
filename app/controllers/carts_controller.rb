@@ -16,10 +16,18 @@ class CartsController < ApplicationController
   end
 
   def update
-    redirect_to carts_path
+    params[:items].each do |id, item_params|
+      if item_params[:quantity] == "0"
+        Cart.find(id).destroy
+      else
+        Cart.find(id).update(quantity: item_params[:quantity])
+      end
+    end
+    redirect_to carts_path, notice: 'カート内容を更新しました'
   end
 
   def destroy
-    redirect_to carts_path
+    Cart.find(params[:id]).destroy
+    redirect_to carts_path, notice: '指定した商品をカートから削除しました'
   end
 end

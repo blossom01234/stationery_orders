@@ -1,9 +1,9 @@
 class CustomerProductListsController < ApplicationController
     before_action :check_customer_sign_in_status
     def index
-        @products = Product.includes(:maker)
+        @products = Product
             .with_attached_image
-            .references(:makers)
+            .includes(:maker)
             .paginate(page: params[:page], per_page: 20)
     end
 end
