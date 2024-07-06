@@ -6,7 +6,8 @@
         <% @products.each do |product| %>
             <div class="col-12 col-sm-6 col-md-4 col-xl-3">
             <div class="card">
-                    <img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg">
+                    <!-- <img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg"> -->
+                    <%= image_tag product.image.variant(:display) %>
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div>

@@ -5,11 +5,13 @@ class CartsController < ApplicationController
 
   def create
     product_id = params[:product_id]
-    cart = Cart.find_by(customer_id: current_customer.id, product_id: product_id)
-    if (cart)
+    cart = Cart.find_or_create_by(customer_id: current_customer.id, product_id: product_id)
+    if (cart.quantity.present?)
       cart.quantity += 1
-      cart.save
+    else
+      cart.quantity = 1
     end
+    cart.save
     redirect_to carts_path
   end
 
