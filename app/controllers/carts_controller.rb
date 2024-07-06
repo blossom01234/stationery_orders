@@ -18,9 +18,9 @@ class CartsController < ApplicationController
   def update
     params[:items].each do |id, item_params|
       if item_params[:quantity] == "0"
-        Cart.find(id).destroy
+        Cart.where("customer_id = ?", current_customer.id).find(id).destroy
       else
-        Cart.find(id).update(quantity: item_params[:quantity])
+        Cart.where("customer_id = ?", current_customer.id).find(id).update(quantity: item_params[:quantity])
       end
     end
     redirect_to carts_path, notice: 'カート内容を更新しました'
