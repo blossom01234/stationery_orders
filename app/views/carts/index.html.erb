@@ -23,9 +23,9 @@
                                     <td class="w-25"><img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg"></td>
                                     <td class="w-25"><%= cart.product.name %></td>
                                     <td><%= cart.product.product_code %></td>
-                                    <td><%= cart.product.price %>円</td>
-                                    <td><%= f.number_field "items[#{cart.id}][quantity]", value: cart.quantity, data: { cart_target: "quantity", action: "input->cart#update" } %></td>
-                                    <td data-cart-target="subtotal"><%= cart.product.price * cart.quantity %>円</td>
+                                    <td><span data-cart-target="price"><%= cart.product.price %></span>円</td>
+                                    <td><%= f.number_field "items[#{cart.id}][quantity]", value: cart.quantity, data: { cart_target: "quantity", action: "input->cart#update" }, class: "cart-quantity" %></td>
+                                    <td data-cart-target="subtotal" class="cart-subtotal"><%= cart.product.price * cart.quantity %></td>
                                     <td>
                                         <%= link_to '削除', cart, method: :delete,
                                         data: { "turbo-method": :delete, turbo_confirm: "削除しますか？" },
@@ -34,7 +34,7 @@
                                 </tr>
                             <% end %>
                             <tr>
-                                <td>合計: </td>
+                                <td>合計: <span class="cart-total"></span></td>
                             </tr>
                     </tbody>
                 </table>
