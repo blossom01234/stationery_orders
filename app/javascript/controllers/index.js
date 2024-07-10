@@ -9,7 +9,8 @@ eagerLoadControllersFrom("controllers", application)
 
 import ImagePreviewController from './image_preview_controller'
 application.register("image-preview", ImagePreviewController)
-
+import CartController from './cart_controller'
+application.register("cart", CartController)
 
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"

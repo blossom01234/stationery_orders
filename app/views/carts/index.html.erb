@@ -14,17 +14,18 @@
                             <th>商品コード</th>
                             <th>単価</th>
                             <th>数量</th>
+                            <th>金額</th>
                         </tr>
                     </thead>
                     <tbody>
-                        
                             <% @carts.each do |cart| %>
-                                <tr>
+                                <tr data-controller="cart">
                                     <td class="w-25"><img class="card-img-top" src="https://cdn.pixabay.com/photo/2023/04/20/20/22/robin-7940556_1280.jpg"></td>
                                     <td class="w-25"><%= cart.product.name %></td>
                                     <td><%= cart.product.product_code %></td>
                                     <td><%= cart.product.price %>円</td>
-                                    <td><%= f.number_field "items[#{cart.id}][quantity]", value: cart.quantity %></td>
+                                    <td><%= f.number_field "items[#{cart.id}][quantity]", value: cart.quantity, data: { cart_target: "quantity", action: "input->cart#update" } %></td>
+                                    <td data-cart-target="subtotal"><%= cart.product.price * cart.quantity %>円</td>
                                     <td>
                                         <%= link_to '削除', cart, method: :delete,
                                         data: { "turbo-method": :delete, turbo_confirm: "削除しますか？" },
@@ -32,8 +33,16 @@
                                     </td>
                                 </tr>
                             <% end %>
+                            <tr>
+                                <td>合計: </td>
+                            </tr>
                     </tbody>
                 </table>
+            </div>
+        <% end %>
+        <%= form_with url: carts_confirm_path do |f| %>
+            <div class="d-flex justify-content-center confirm-btn">
+                <%= f.submit '確認', class: 'btn btn-primary w-25' %>
             </div>
         <% end %>
     <% else %>

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     sessions: 'customers/sessions'
   }
   resources :carts
+  get "carts/confirm"
   resources :orders
   resources :products
   resources :makers

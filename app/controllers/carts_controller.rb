@@ -30,4 +30,10 @@ class CartsController < ApplicationController
     Cart.find(params[:id]).destroy
     redirect_to carts_path, notice: '指定した商品をカートから削除しました'
   end
+
+  def confirm
+  end
+
+  def complete
+  end
 end
