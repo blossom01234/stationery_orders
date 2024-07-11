@@ -66,6 +66,15 @@ class ProductsController < ApplicationController
         redirect_to :products, notice: 'Product was successfully destroyed.'
     end
 
+    def autocomplete
+        if params[:q].present?
+            products = Product.where("name LIKE ?", "%#{params[:q]}%").limit(10)
+            render json: products.pluck(:name)
+        else
+            render json: []
+        end
+    end
+
     private
         def set_makers
             @makers = Maker.all.map { |maker| [maker.name, maker.id] }

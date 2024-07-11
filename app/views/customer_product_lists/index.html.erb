@@ -3,6 +3,11 @@
         <div class="d-flex justify-content-center mb-3">
             <h1>商品一覧</h1>
         </div>
+        <div data-controller="autocomplete" data-autocomplete-url-value="/products/autocomplete" role="combobox">
+            <input type="text" data-autocomplete-target="input"/>
+            <input type="hidden" name="bird_id" data-autocomplete-target="hidden"/>
+            <ul class="list-group" data-autocomplete-target="results"></ul>
+        </div>
         <% @products.each do |product| %>
             <div class="col-12 col-sm-6 col-md-4 col-xl-3">
             <div class="card">
