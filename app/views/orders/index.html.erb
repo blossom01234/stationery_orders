@@ -12,7 +12,6 @@
                     <th>合計金額</th>
                     <th>更新日</th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -22,8 +21,12 @@
                     <td>data2</td>
                     <td>data3</td>
                     <td>data4</td>
-                    <td>data1</td>
-                    <td>data1</td>
+                    <td class="d-flex justify-content-end">
+                        <%= link_to "編集", edit_order_path(order), class: 'btn btn-primary' %>
+                        <%= link_to "削除", order, method: :delete,
+                        data: { "turbo-method": :delete, turbo_confirm: "削除しますか？" },
+                        class: 'btn btn-danger mx-3' %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>

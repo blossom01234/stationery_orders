@@ -1,0 +1,19 @@
+<div class="container mt-3 maker-form">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="text-center">
+                <h2><%= title %></h2>
+            </div>
+            <%= form_with(model: @order) do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <%= f.label :customer_full_name, '顧客名', class: 'form-label' %>
+                <%= f.text_field :customer_full_name, class: 'form-control', disabled: true %>
+                <%= f.label :order_date, '受注日', class: 'form-label' %>
+                <%= f.datetime_field :order_date, class: 'form-control' %>
+                <div class="d-flex justify-content-center">
+                    <%= f.submit button, class: 'btn btn-primary mt-3 w-10', data: { turbo_confirm: "データを#{button}しますか？" } %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
