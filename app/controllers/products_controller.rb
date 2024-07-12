@@ -69,7 +69,12 @@ class ProductsController < ApplicationController
     def autocomplete
         if params[:q].present?
             products = Product.where("name LIKE ?", "%#{params[:q]}%").limit(10)
-            render json: products.pluck(:name)
+            res = ""
+            products.each do |product|
+                res = res + '<li class="list-group-item" role="option" 
+                    data-autocomplete-value="' + product.name + '">' + product.name + '</li>'
+            end
+            render json: res
         else
             render json: []
         end
