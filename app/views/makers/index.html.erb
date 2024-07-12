@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-center">
         <h1>メーカー一覧</h1>
     </div>
-    <%= will_paginate @makers %>
+    <%= will_paginate @makers, class: "pagination" %>
     <div class="table-responsive">
         <div class="d-flex justify-content-end me-4">
             <%= link_to '新規作成', new_maker_path, class: 'btn btn-success' %>
@@ -32,6 +32,6 @@
                 <% end %>
             </tbody>
         </table>
-        <%= will_paginate @makers %>
+        <%= will_paginate @makers, class: "pagination" %>
     </div>
 </div>

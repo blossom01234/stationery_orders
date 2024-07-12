@@ -3,7 +3,7 @@
         <h1>受注一覧</h1>
     </div>
     <div class="table-responsive">
-        <%= will_paginate @orders %>
+        <%= will_paginate @orders, class: "pagination" %>
         <table class="table table-hover">
             <thead>
                 <tr class="">
@@ -29,7 +29,7 @@
             </tbody>
         </table>
     </div>
-    <%= will_paginate @orders %>
+    <%= will_paginate @orders, class: "pagination" %>
 </div>
 <script>
     // TODO 注文詳細画面に遷移させる

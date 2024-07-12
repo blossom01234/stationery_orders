@@ -40,7 +40,7 @@
             </div>
         </div>
     <% end %>
-    <%= will_paginate @products %>
+    <%= will_paginate @products, class: "pagination" %>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
@@ -80,7 +80,7 @@
             </tbody>
         </table>
     </div>
-    <%= will_paginate @products %>
+    <%= will_paginate @products, class: "pagination" %>
 </div>
 <script>
     function editProdcuct(product_id) {
