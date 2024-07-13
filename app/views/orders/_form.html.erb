@@ -4,7 +4,7 @@
       <div class="text-center">
         <h2><%= title %></h2>
       </div>
-      <%= form_with(model: @order) do |f| %>
+      <%= form_with model: @order, method: :patch do |f| %>
         <div class="d-flex justify-content-center">
           <%= f.submit button, class: 'btn btn-primary mt-3 w-10', data: { turbo_confirm: "データを#{button}しますか？" } %>
         </div>
@@ -29,10 +29,16 @@
           <tbody>
             <% @order_details.each do |detail| %>
               <tr>
-                <td><input type="text" class="form-control" value="<%= detail.product.name %>"></td>
-                <td><input type="text" class="form-control" value="<%= detail.quantity %>"></td>
-                <td><input type="text" class="form-control" value="<%= detail.product.price %>"></td>
-                <td><input type="text" class="form-control" value="<%= detail.product.price * detail.quantity %>"></td>
+                <td>
+                  <div data-controller="autocomplete" data-autocomplete-url-value="/products/autocomplete">
+                    <input data-autocomplete-target="input" type="text" class="form-control" value="<%= detail.product.name %>">
+                    <ul class="list-group" data-autocomplete-target="results"></ul>
+                    <input type="hidden" data-autocomplete-target="hidden" name="details[][product_id]" value="1">
+                  </div>
+                </td>
+                <td><input type="text" class="form-control" name="details[][quantity]" value="<%= detail.quantity %>"></td>
+                <td><input type="text" class="form-control" name="details[][price]" value="<%= detail.product.price %>"></td>
+                <td><input type="text" class="form-control" name="details[][name]" value="<%= detail.product.price * detail.quantity %>"></td>
                 <td></td>
               </tr>
             <% end %>
