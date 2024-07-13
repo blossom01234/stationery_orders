@@ -14,6 +14,9 @@ application.register("cart", CartController)
 import { Autocomplete } from 'stimulus-autocomplete'
 application.register('autocomplete', Autocomplete)
 
+import TableRow from './table_row'
+application.register('table-row', TableRow)
+
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)

@@ -1,6 +1,6 @@
 <div class="container mt-3 maker-form">
   <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-8">
       <div class="text-center">
         <h2><%= title %></h2>
       </div>
@@ -17,16 +17,30 @@
         <%= f.label :order_date, '受注日', class: 'form-label' %>
         <%= f.datetime_field :order_date, class: 'form-control' %>
 
-        <table class="table">
+        <table class="table" data-controller="table-row" data-table-row-target="table" >
           <thead>
             <tr>
               <th>商品名</th>
               <th>数量</th>
               <th>単価</th>
               <th>金額</th>
+              <th class="orders-btn-col"><button type="button" data-action="click->table-row#addRow" class="btn btn-success">追加</th>
             </tr>
           </thead>
           <tbody>
+            <tr id="rowTemplate" style="display: none;">
+              <td>
+                <div data-controller="autocomplete" data-autocomplete-url-value="/products/autocomplete_id_name">
+                  <input data-autocomplete-target="input" type="text" class="form-control" value="">
+                  <ul class="list-group" data-autocomplete-target="results"></ul>
+                  <input type="hidden" data-autocomplete-target="hidden" name="details[][product_id]" value="1">
+                </div>
+              </td>
+              <td><input type="text" class="form-control" name="details[][quantity]" value=""></td>
+              <td><input type="text" class="form-control" name="details[][price]" disabled value=""></td>
+              <td><input type="text" class="form-control" name="details[][name]" disabled value=""></td>
+              <td><button type="button" data-action="click->table-row#deleteRow" class="btn btn-danger">削除</button></td>
+            </tr>
             <% @order_details.each do |detail| %>
               <tr>
                 <td>
@@ -39,7 +53,7 @@
                 <td><input type="text" class="form-control" name="details[][quantity]" value="<%= detail.quantity %>"></td>
                 <td><input type="text" class="form-control" name="details[][price]" disabled value="<%= detail.product.price %>"></td>
                 <td><input type="text" class="form-control" name="details[][name]" disabled value="<%= detail.product.price * detail.quantity %>"></td>
-                <td></td>
+                <td><button data-action="click->table-row#deleteRow" class="btn btn-danger">削除</button></td>
               </tr>
             <% end %>
           </tbody>
