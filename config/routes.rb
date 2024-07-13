@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   get "carts/confirm"
   resources :orders
   resources :products do
-    get :autocomplete, on: :collection
+    get :autocomplete_name, on: :collection
+    get :autocomplete_id_name, on: :collection
   end
   resources :makers
   root "customer_product_lists#index"

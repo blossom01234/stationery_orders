@@ -30,15 +30,15 @@
             <% @order_details.each do |detail| %>
               <tr>
                 <td>
-                  <div data-controller="autocomplete" data-autocomplete-url-value="/products/autocomplete">
+                  <div data-controller="autocomplete" data-autocomplete-url-value="/products/autocomplete_id_name">
                     <input data-autocomplete-target="input" type="text" class="form-control" value="<%= detail.product.name %>">
                     <ul class="list-group" data-autocomplete-target="results"></ul>
                     <input type="hidden" data-autocomplete-target="hidden" name="details[][product_id]" value="1">
                   </div>
                 </td>
                 <td><input type="text" class="form-control" name="details[][quantity]" value="<%= detail.quantity %>"></td>
-                <td><input type="text" class="form-control" name="details[][price]" value="<%= detail.product.price %>"></td>
-                <td><input type="text" class="form-control" name="details[][name]" value="<%= detail.product.price * detail.quantity %>"></td>
+                <td><input type="text" class="form-control" name="details[][price]" disabled value="<%= detail.product.price %>"></td>
+                <td><input type="text" class="form-control" name="details[][name]" disabled value="<%= detail.product.price * detail.quantity %>"></td>
                 <td></td>
               </tr>
             <% end %>

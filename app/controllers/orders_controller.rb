@@ -13,13 +13,20 @@ class OrdersController < ApplicationController
   end
 
   def update
-    redirect_to edit_order_path(@order), notice: '更新完了'
-    detail = OrderDetail.new()
-    details = []
-    params[:details].each do |d|
-      details << {quantity: d[:quantity], order_id: @order.id, product_id: d[:product_id] }
+    begin
+      ActiveRecord::Base.transaction do
+        @order_details.destroy_all
+        details = []
+        params[:details].each do |d|
+          details << { quantity: d[:quantity], order_id: @order.id, product_id: d[:product_id] }
+        end
+        OrderDetail.insert_all!(details)
+        redirect_to edit_order_path(@order), notice: '更新完了'
+      end
+    rescue => e
+      debugger
+      redirect_to edit_order_path(@order), error: "エラーが発生しました #{e.message}"
     end
-    debugger
   end
 
   def destroy
@@ -31,6 +38,12 @@ class OrdersController < ApplicationController
     end
 
     def set_order_detail
-      @order_details = OrderDetail.where("order_id = ?", params[:id])
+      @order_details = OrderDetail
+        .includes(:product)
+        .references(:product)
+        .where("order_id = ?", params[:id])
+
+      @products = Product.includes(:maker)
+            .references(:makers)
     end
 end

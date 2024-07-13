@@ -6,7 +6,7 @@
         <div class="row justify-content-center" >
             <div class="col-6">
                 <%= form_with url:root_path, method: :get do |f| %>
-                    <div data-controller="autocomplete" data-autocomplete-url-value="/products/autocomplete" role="combobox">
+                    <div data-controller="autocomplete" data-autocomplete-url-value="/products/autocomplete_name" role="combobox">
                         <%= f.label :maker_id, "メーカー" %>
                         <%= f.select :maker_id, options_from_collection_for_select(@makers, :id, :name, params[:maker_id]),{ prompt: '未選択' }, class: 'form-select' %>
                         <label class="mt-3">商品名</label>

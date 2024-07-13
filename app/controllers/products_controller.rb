@@ -66,21 +66,32 @@ class ProductsController < ApplicationController
         redirect_to :products, notice: 'Product was successfully destroyed.'
     end
 
-    def autocomplete
-        if params[:q].present?
-            products = Product.where("name LIKE ?", "%#{params[:q]}%").limit(10)
-            res = ""
-            products.each do |product|
-                res = res + '<li class="list-group-item" role="option" 
-                    data-autocomplete-value="' + product.name + '">' + product.name + '</li>'
-            end
-            render json: res
-        else
-            render json: []
-        end
+    def autocomplete_name
+        render json: autocomplete(is_id: false)
+    end
+
+    def autocomplete_id_name
+        render json: autocomplete(is_id: true)
     end
 
     private
+        def autocomplete(is_id: false)
+            if params[:q].present?
+                products = Product.where("name LIKE ?", "%#{params[:q]}%").limit(10)
+                res = ""
+                products.each do |product|
+                    if is_id
+                        res = res + '<li class="list-group-item" role="option" data-autocomplete-value="' + product.id.to_s + '">' + product.name + '</li>'
+                    else
+                        res = res + '<li class="list-group-item" role="option" data-autocomplete-value="' + product.name + '">' + product.name + '</li>'
+                    end
+                end
+                return res
+            else
+                return []
+            end
+        end
+
         def set_makers
             @makers = Maker.all.map { |maker| [maker.name, maker.id] }
             @makers.unshift(['選択してください', nil]) if @makers.any?
