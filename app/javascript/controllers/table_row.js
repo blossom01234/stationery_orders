@@ -4,7 +4,6 @@ export default class extends Controller {
     static targets = [ "table" ]
 
     addRow() {
-        alert("test")
         const table = this.tableTarget;
         const template = document.getElementById('rowTemplate');
         const newRow = template.cloneNode(true);
