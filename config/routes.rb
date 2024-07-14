@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get "carts/confirm"
   resources :orders
   resources :products do
+    get :price, on: :collection
     get :autocomplete_name, on: :collection
     get :autocomplete_id_name, on: :collection
   end

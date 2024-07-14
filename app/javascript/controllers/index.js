@@ -8,8 +8,8 @@ eagerLoadControllersFrom("controllers", application)
 
 import ImagePreviewController from './image_preview_controller'
 application.register("image-preview", ImagePreviewController)
-import CartController from './cart_controller'
-application.register("cart", CartController)
+import CalcTotalController from './calc_total_controller'
+application.register("cart", CalcTotalController)
 
 import { Autocomplete } from 'stimulus-autocomplete'
 application.register('autocomplete', Autocomplete)

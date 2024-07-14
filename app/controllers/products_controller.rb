@@ -74,6 +74,14 @@ class ProductsController < ApplicationController
         render json: autocomplete(is_id: true)
     end
 
+    def price
+        if params[:product_id].blank?
+            render json: { "price": 0};
+        else
+            render json: { "price": Product.find(params[:product_id]).price }
+        end
+    end
+
     private
         def autocomplete(is_id: false)
             if params[:q].present?

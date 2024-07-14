@@ -1,9 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["quantity", "subtotal", "price"]
+  static targets = ["quantity", "subtotal", "price", "productId"]
   connect() {
     this.updateTotal();
+    this.productIdTarget.addEventListener("input", this.fetchData.bind(this));
   }
 
   update() {
@@ -21,6 +22,16 @@ export default class extends Controller {
     this.subtotalTargets.forEach(subtotal => {
       total += parseInt(subtotal.innerText);
     })
-    document.querySelector(".cart-total").innerText = total;
+    document.querySelector(".all-total").innerText = total;
+  }
+
+  async fetchData() {
+    const productId = this.productIdTarget.value
+    const res = await fetch(`/products/price?product_id=${productId}`);
+    console.log(res)
+    const data = await res.json();
+    console.log(data.price)
+    this.priceTarget.innerText = data.price;
+    this.update()
   }
 }
