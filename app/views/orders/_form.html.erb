@@ -15,7 +15,7 @@
         <%= f.select :status, options_for_select(code_select_options(:status), selected: @order.status), 
           {}, class: 'form-control' %>
         <%= f.label :order_date, '受注日', class: 'form-label' %>
-        <%= f.datetime_field :order_date, class: 'form-control' %>
+        <%= f.datetime_field :order_date, class: 'form-control', disabled: true %>
 
         <table class="table" data-controller="table-row" data-table-row-target="table" >
           <thead>
@@ -28,17 +28,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr id="rowTemplate" style="display: none;">
+            <tr id="rowTemplate" style="display: none;" data-controller="calc-total">
               <td>
                 <div data-controller="autocomplete" data-autocomplete-url-value="/products/autocomplete_id_name">
                   <input data-autocomplete-target="input" type="text" class="form-control" value="">
                   <ul class="list-group" data-autocomplete-target="results"></ul>
-                  <input type="hidden" data-autocomplete-target="hidden" name="details[][product_id]" value="1">
+                  <input type="hidden" data-autocomplete-target="hidden" data-calc-total-target="productId" name="details[][product_id]" value="1">
                 </div>
               </td>
-              <td><input type="text" class="form-control" name="details[][quantity]" value=""></td>
-              <td><input type="text" class="form-control" name="details[][price]" disabled value=""></td>
-              <td><input type="text" class="form-control" name="details[][name]" disabled value=""></td>
+              <td>
+                <input type="number" data-calc-total-target="quantity" data-action="input->calc-total#update"
+                    class="form-control" name="details[][quantity]" value="">
+              </td>
+              <td data-calc-total-target="price"></td>
+              <td data-calc-total-target="subtotal" class="subtotal"></td>
               <td><button type="button" data-action="click->table-row#deleteRow" class="btn btn-danger">削除</button></td>
             </tr>
             <% @order_details.each do |detail| %>
@@ -54,19 +57,18 @@
                   <input type="number" data-calc-total-target="quantity" data-action="input->calc-total#update"
                     class="form-control" name="details[][quantity]" value="<%= detail.quantity %>">
                 </td>
-                <td data-calc-total-target="price">
-                  <%= detail.product.price %>
-                </td>
-                <td data-calc-total-target="subtotal">
-                  <%= detail.product.price * detail.quantity %>
-                </td>
-                <td><button data-action="click->table-row#deleteRow" class="btn btn-danger">削除</button></td>
+                <td data-calc-total-target="price"><%= detail.product.price %></td>
+                <td data-calc-total-target="subtotal" class="subtotal"><%= detail.product.price * detail.quantity %></td>
+                <td><button type="button" data-action="click->table-row#deleteRow" class="btn btn-danger">削除</button></td>
               </tr>
             <% end %>
-            <tr>
-              <td>合計: <span class="all-total"></span></td>
-            </tr>
           </tbody>
+          <tfoot>
+            <tr>
+            <td>合計: <span class="all-total"></span></td>
+          </tr>
+          </tfoot>
+          <%= f.hidden_field :total_price, class: "all-total-hidden" %>
         </table>
         <div class="d-flex justify-content-center">
             <%= f.submit button, class: 'btn btn-primary mt-3 w-10', data: { turbo_confirm: "データを#{button}しますか？" } %>

@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
           details << { quantity: d[:quantity], order_id: @order.id, product_id: d[:product_id] }
         end
         OrderDetail.insert_all!(details)
+        @order.update(status: params[:order][:status], total_price: params[:order][:total_price])
         redirect_to edit_order_path(@order), notice: '更新完了'
       end
     rescue => e

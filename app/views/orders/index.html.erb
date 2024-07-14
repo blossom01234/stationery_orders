@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <% @orders.each do |order| %>
-                <tr onClick="test(<%= order.id %>)">
+                <tr>
                     <td><%= order.id %></td>
                     <td>data2</td>
                     <td>data3</td>
@@ -34,7 +34,3 @@
     </div>
     <%= will_paginate @orders, class: "pagination" %>
 </div>
-<script>
-    // TODO 注文詳細画面に遷移させる
-    function test(val) { Turbo.visit("/") }
-</script>

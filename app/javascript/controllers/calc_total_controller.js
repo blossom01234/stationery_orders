@@ -19,10 +19,15 @@ export default class extends Controller {
 
   updateTotal() {
     let total = 0;
-    this.subtotalTargets.forEach(subtotal => {
-      total += parseInt(subtotal.innerText);
+    document.querySelectorAll(".subtotal").forEach(subtotal => {
+      if (!isNaN(parseInt(subtotal.innerText))) {
+        total += parseInt(subtotal.innerText);
+      }
     })
     document.querySelector(".all-total").innerText = total;
+    if (document.querySelector(".all-total-hidden")) {
+      document.querySelector(".all-total-hidden").value = total;
+    }
   }
 
   async fetchData() {
