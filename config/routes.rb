@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   devise_for :customers, path: 'customers', controllers: {
     sessions: 'customers/sessions'
   }
+  resources :customers
   resources :carts
   get "carts/confirm"
   resources :orders
