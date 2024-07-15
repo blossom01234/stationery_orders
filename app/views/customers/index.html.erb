@@ -1,1 +1,35 @@
-<h1>test</h1>
+<div class="container mt-3">
+  <div class="d-flex justify-content-center mb-3">
+    <h1>会員一覧</h1>
+  </div>
+  <div class="table-responsive">
+    <%= will_paginate @customers, class: "pagination" %>
+    <table class="table table-hover">
+      <thead>
+          <tr>
+            <th>会員名</th>
+            <th>Eメール</th>
+            <th>組織</th>
+            <th>更新日</th>
+            <th></th>
+          </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+        <tr>
+          <td><%= "#{customer.first_name} #{customer.last_name}" %></td>
+          <td><%= customer.email %></td>
+          <td><%= customer.organization %> </td>
+          <td><%= customer.updated_at%> </td>
+          <td class="d-flex justify-content-end">
+            <%= link_to '編集', edit_customer_path(customer), class: 'btn btn-primary' %>
+            <%= link_to '削除', customer, method: :delete, class: 'btn btn-danger ms-3',
+             data: {"turbo-method": :delete, turbo_confirm: "削除しますか？"} %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= will_paginate @customers, class: "pagination" %>
+</div>
