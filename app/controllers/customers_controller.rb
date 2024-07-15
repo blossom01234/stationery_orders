@@ -9,19 +9,31 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
   end
 
-  def edit
+  def new
+    @customer = Customer.new
+  end
 
+  def edit
   end
 
   def destroy
-
+    @customer.destory
+    redirect_to :customers, notice: 'Customer was successfully deleted.'
   end
 
   def update
-    
+    if @customer.update(customer_params)
+      redirect_to :customers, notice: 'Customer was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
+    def set_customer
+      @customer = Customer.find(params[:id])
+    end
+
     def customer_params
       params.require(:customer).permit(
         :first_name, :last_name,
